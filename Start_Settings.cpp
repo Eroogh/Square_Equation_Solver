@@ -1,86 +1,96 @@
 #include "Start_Settings.h"
 
-Start_Mode Start_Settings(int argc, char *argv[])
+Start_Mode SetStartMode(int argc, char *argv[])
 {
-    printf("%s\n",argv[1]);
+    assert(argv != NULL);
+
+    if (argc >= 3)
+    {
+        assert(argv[2] != NULL);
+
+        if (argc >= 4)
+        {
+            printf("too many stuff you typed\n\n");
+
+            return Default_Mode;
+        }
+        if ((!strcmp(argv[1], "-t") || !strcmp(argv[1], "-test")) && argv[2][0] != '-')
+        {
+            printf("%c\n", argv[2][0]);
+            printf("%s\n", argv[2]);
+
+            const char * File_Name = argv[2];
+
+            printf("Trying to run your tests...\n\n");
+
+            TestSolver(argv[2]);
+
+            return Users_Unit_Test_Mode;
+        }
+    }
 
     if (argc > 1)
     {
-        char * flag = (char*) calloc(argc, sizeof(char));
 
-        flag = argv[1];
+        printf("%c\n", argv[1][0]);
 
-        printf("%s\n",argv[1]);
-
-        if (!strcmp(flag,"-h") || !strcmp(flag,"-help"))
+        if (!strcmp(argv[1], "-h") || !strcmp(argv[1], "-help"))
         {
-            printf("Flags Help:\n-t / -test - run Unit Test\nTo solve square equation run without flags\nThat's All\n\n");
-            free(flag);
-            return Help;
+            return Help_Mode;
         }
-        if (!strcmp(flag,"-t") || !strcmp(flag,"-test"))
+        if (!strcmp(argv[1], "-t") || !strcmp(argv[1], "-test"))
         {
-            printf("Running Tests...\n\n");
-            free(flag);
-            return Tests;
+            return Tests_Mode;
         }
-
-        printf("Flags Help:\n-h / -help - Flags Help\n-t / -test - run Unit Test\nTo solve square equation run without flags\nThat's All\n\n");
-        free(flag);
-        return Default;
+        return Default_Mode;
     }
-    printf("Square Equation Solver\n\n");
-    return Normal;
+    return Normal_Mode;
 }
 
-    /*switch(flag)
+void PrintProgramMode(Start_Mode Mode)
+{
+    switch(Mode)
     {
-        case "-h":
+        case Default_Mode:
 
-            printf("Flags Help:\n-t - run Unit Test\nTo solve square equation run without flags\nThat's All\n\n");
-            return Help;
+            printf("Flags Help:\n"
+                   "-h / -help - Flags Help\n"
+                   "-t / -test - run Unit Test\n"
+                   "-t / -test file_name.txt - run Unit Test from your file (check format of \"Test_Data.txt\")\n"
+                   "To solve square equation run without flags\n"
+                   "That's All\n\n");
             break;
 
-        case "-t":
-            printf("Running Tests\n\n");
-            return Tests;
+        case Help_Mode:
+
+            printf("Flags Help:\n"
+                   "-t / -test - run Unit Test\n"
+                   "-t / -test file_name.txt - run Unit Test from your file (check format of \"Test_Data.txt\")\n"
+                   "To solve square equation run without flags\n"
+                   "That's All\n\n");
+            break;
+
+        case Tests_Mode:
+
+            printf("Running Tests...\n\n");
+            break;
+
+        case Users_Unit_Test_Mode:
+
+            printf("Your Tests\n\n");
+            break;
+
+        case Normal_Mode:
+
+            printf("Square Equation Solver\n\n");
             break;
 
         default:
 
-            printf("Flags Help:\n-h - Flags Help\n-t - run Unit Test\nTo solve square equation run without flags\nThat's All\n\n");
-            return Default;
+            printf("Unknown Error with setting program working mode");
             break;
-    } */
+    }
+}
 
-    /*if (argc > 1 && (*++argv)[0] == '-')
-    {
-        int i = 1;
 
-        while(i < argc)
-        {
-            printf("%c\n", (*argv)[i]);
-
-            switch((*argv)[i])
-            {
-                case 'h':
-
-                    printf("Flags Help:\n-t - run Unit Test\nTo solve square equation run without flags\nThat's All\n\n");
-                    return Help;
-                    break;
-                case 't':
-                    printf("Running Tests\n\n");
-                    return Tests;
-                    break;
-                default:
-
-                    printf("Flags Help:\n-h - Flags Help\n-t - run Unit Test\nTo solve square equation run without flags\nThat's All\n\n");
-                    return Default;
-                    break;
-            }
-        }
-    } else
-    {
-        return Normal;
-    } */
 

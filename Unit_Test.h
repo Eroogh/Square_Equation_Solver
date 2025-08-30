@@ -11,7 +11,7 @@
 #include "Color_Lib.h"
 #include "File_Reader.h"
 
-void TestSolver();
+void TestSolver(const char * File_Name);
 
 int OneTest (Test_Data test, int which_test);
 

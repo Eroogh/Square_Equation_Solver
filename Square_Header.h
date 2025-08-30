@@ -7,6 +7,7 @@
 #include <stdio.h>
 #include <math.h>
 #include <assert.h>
+
 #include "Common_Var.h"
 #include "Functions_Compare_Numbers.h"
 #include "Solver.h"
@@ -29,7 +30,7 @@
 //!@param [in] x
 //!@return true in case if the x is in arrange of [-ALMOST_ZERO; +ALMOST_ZERO]
 
-bool IsEqualZero(double x);
+bool IsEqualZero(double x);   // todo to separate files
 
 //!@brief This function compares two numbers by "ALMOST_ZERO" error
 //!@param [in] x, the first number
@@ -40,7 +41,7 @@ bool IsEqNum(double x, double y);
 
 //!@brief Unit Test
 
-void TestSolver();
+void TestSolver(const char * File_Name);
 
 //!@brief some stuff for Unit Test
 
@@ -70,7 +71,7 @@ Num_of_Sols LinearSolver(double a, double b, double *x);
 //!@param [in] x1, the first solution
 //!@param [in] x2, the second solution
 
-void Answer(/*double a, double b, double c, */Num_of_Sols res, double x1, double x2);
+void Answer(double a, double b, double c, Num_of_Sols res, double x1, double x2);
 
 //!@brief This function takes coefficients from user
 //!@param [out] a

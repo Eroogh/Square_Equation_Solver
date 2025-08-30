@@ -10,7 +10,7 @@
 #include "UI_Input.h"
 #include "Unit_Test.h"
 
-Num_of_Sols SquareSolver(double a, double b, double c,
+Num_of_Sols SquareSolver(double  a, double   b, double c,
                          double* x1, double* x2);
 
 Num_of_Sols LinearSolver(double a, double b, double *x);

@@ -1,6 +1,6 @@
 #include "Solver.h"
 
-Num_of_Sols SquareSolver(/*Square_Data coeffs)*/       double a, double b, double c,
+Num_of_Sols SquareSolver(/*Square_Data coeffs)*/       double  a, double   b, double c,
                                                        double* x1, double* x2)
 {
     assert(x1 != 0);

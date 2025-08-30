@@ -7,9 +7,9 @@ void File_Reader(const char * File_Name, size_t N, Test_Data *List_of_Tests)
     assert(file != NULL);
     assert(List_of_Tests != NULL);
 
-    for (int i=0; i<N;++i)
+    for (unsigned i = 0; i < N; ++i)
     {
-        assert(0<=i && i< N);
+        assert(i < N);
         fscanf(file, "%lg %lg %lg %d %lg %lg\n", &List_of_Tests[i].a, &List_of_Tests[i].b, &List_of_Tests[i].c,
                                                  &List_of_Tests[i].nRootsref,
                                                  &List_of_Tests[i].x1ref, &List_of_Tests[i].x2ref);
@@ -20,7 +20,14 @@ void File_Reader(const char * File_Name, size_t N, Test_Data *List_of_Tests)
 
 unsigned int Tests_Counter(const char * File_Name)
 {
+    assert(File_Name != NULL);
+
     FILE * file = fopen(File_Name, "r");
+
+    if (errno)
+        perror("Tests_Counter");
+
+    printf("%s\n", File_Name);
 
     assert(file != NULL);
 
@@ -28,7 +35,7 @@ unsigned int Tests_Counter(const char * File_Name)
 
     int c = fgetc(file);
 
-    while (c!=EOF)
+    while (c != EOF)
     {
         if (c == '\n')
         {

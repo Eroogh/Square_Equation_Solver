@@ -15,7 +15,7 @@ void InputBuffer(double* scanfpar, char c)
 {
     assert(scanfpar != 0);
 
-    char garbage = 0;
+    char garbage[100] = {0};
 
     while (scanf("%lg%[ \t]", scanfpar, &garbage) == 0 || getchar() != '\n')
     {

@@ -2,11 +2,17 @@
 #define START_SETS_H
 
 #include <stdio.h>
-#include <malloc.h>
 #include <string.h>
+#include <assert.h>
+#include <errno.h>
 
-enum Start_Mode { Default = -1, Normal, Help, Tests };
+#include "Unit_Test.h"
 
-Start_Mode Start_Settings(int argc, char *argv[]);
+
+enum Start_Mode { Default_Mode = -1, Normal_Mode, Help_Mode, Tests_Mode, Users_Unit_Test_Mode };
+
+Start_Mode SetStartMode(int argc, char *argv[]);
+
+void PrintProgramMode(Start_Mode Mode);
 
 #endif  //
